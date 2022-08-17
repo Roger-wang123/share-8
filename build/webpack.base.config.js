@@ -13,15 +13,19 @@ module.exports = {
         chunkFilename: '[name].bundle.js'
     },
     resolve: {
-        extensions: ['.js', '.ts', '.tsx', '.css']
+        extensions: ['.js', '.ts', '.tsx', '.css'],
+        alias: {
+            '@': path.resolve(__dirname, '../src')
+        }
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/i,
-                use: [{
-                    loader: 'ts-loader'
-                }],
+                loader: 'ts-loader',
+                options: {
+                    appendTsSuffixTo: [/\.vue$/]
+                },
                 exclude: /node_modules/
             },
             {
