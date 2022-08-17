@@ -5,8 +5,8 @@ const path = require('path')
 
 module.exports = {
     entry: {
-       'index': path.resolve(__dirname, '../src/index.ts'),
-       'srcset': path.resolve(__dirname, '../src/srcset.ts'),
+        'index': path.resolve(__dirname, '../src/script/index.ts'),
+        'srcset': path.resolve(__dirname, '../src/script/srcset.ts')
     },
     output: {
         filename: '[name].bundle.js',
@@ -49,7 +49,7 @@ module.exports = {
                 test: /\.vue$/i,
                 loader: 'vue-loader',
                 options: {
-                  reactivityTransform: true
+                    reactivityTransform: true
                 }
             }
         ]

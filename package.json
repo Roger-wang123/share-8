@@ -32,6 +32,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.config.js",
+    "dev:ssr": "ts-node ./src/script/srcset_ssr.ts",
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.js"
   },
   "keywords": [],
