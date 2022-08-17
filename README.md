@@ -1,0 +1,1 @@
+关于为什么不能删除重复的声明 除非声明项和值完全一致 https://github.com/cssnano/cssnano/issues/86

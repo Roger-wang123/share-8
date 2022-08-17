@@ -1,0 +1,30 @@
+/* 注释一下 */
+*{
+    margin: 0;
+    padding: 0;
+}
+#app{
+    width: 375px;
+    font-size: 28px;
+    font-size: 14px;
+    background: #000;
+    display: flex;
+    display: block;
+    color: #fff;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#app{
+    font-size: 28px;
+    transform: rotate(-10deg);
+}
+/* 我是注释 */
+.cssnano{
+    background: #000;
+    background: #000;
+    display: block;
+    color: #fff;
+}
