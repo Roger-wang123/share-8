@@ -1,13 +1,26 @@
 import express from 'express'
 import { createSSRApp } from 'vue'
 import { renderToString } from 'vue/server-renderer'
+import { getImageSrcAndSrcsetCDNUrl } from "../utils";
 
 const server = express()
 
 server.get('/', (req, res) => {
   const app = createSSRApp({
-    data: () => ({ count: 1 }),
-    template: `<button @click="count++">{{ count }}</button>`
+    data: () => ({ mobileImgUrl: '//cdn.yamibuy.net/mkpl/733722a7fa6f83b7a060ca1868ed6ec4_0x0.png' }),
+    template: `
+    <div class="img-wrapper">
+      <img
+        :src="getImageSrcAndSrcsetCDNUrl({ url: mobileImgUrl, width: '100%' })"
+        :srcset="
+          getImageSrcAndSrcsetCDNUrl({
+            url: mobileImgUrl,
+            width: '100%',
+            type: 'srcset',
+          })
+        "
+      />
+    </div>`
   })
 
   renderToString(app).then((html) => {
@@ -15,7 +28,7 @@ server.get('/', (req, res) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Vue SSR Example</title>
+        <title>srcset_ssr演示</title>
       </head>
       <body>
         <div id="app">${html}</div>
@@ -26,5 +39,5 @@ server.get('/', (req, res) => {
 })
 
 server.listen(3000, () => {
-  console.log('ready')
+  console.log('http://localhost:3000 ready')
 })
