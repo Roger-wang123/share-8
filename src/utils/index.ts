@@ -48,7 +48,7 @@ interface imageInfo {
   designWidth: number;
   scale: number; // 测试用  期望图片可以根据宽度自适应高度并返回
 }
-export const getImageSrcAndSrcsetCDNUrl = (data: imageInfo): string => {
+export const getImageSrcAndSrcsetCDNUrl = (data: any): string => {
   if (!data.url)
     return "//cdn.yamibuy.net/statics/libraries/yamibuy/images/lazyloading.svg";
   let config: imageInfo = {
@@ -74,7 +74,7 @@ export const getImageSrcAndSrcsetCDNUrl = (data: imageInfo): string => {
     // src应该设置为画质较低的图片 鉴于现在手机都是DPR=2起步的 所以使DPR=2 卡375*2这一档
     if (typeof config.width == "number") {
       const imgWidth = (config.width / config.designWidth) * DIP * DPR;
-      sizeStr = `${imgWidth}x${Math.floor(imgWidth * config.scale)}`;
+      sizeStr = `${Math.floor(imgWidth)}x${Math.floor(imgWidth * config.scale)}`;
     } else if (
       typeof config.width == "string" &&
       config.width.split("").pop() == "%"
@@ -84,7 +84,7 @@ export const getImageSrcAndSrcsetCDNUrl = (data: imageInfo): string => {
         0.01 *
         DIP *
         DPR;
-      sizeStr = `${imgWidth}x${Math.floor(imgWidth * config.scale)}`;
+      sizeStr = `${Math.floor(imgWidth)}x${Math.floor(imgWidth * config.scale)}`;
     }
     return cdnUrl(config.url, sizeStr) as string;
   } else {
@@ -101,7 +101,7 @@ export const getImageSrcAndSrcsetCDNUrl = (data: imageInfo): string => {
       let imgWidth = 0;
       if (typeof config.width == "number") {
         imgWidth = (config.width / config.designWidth) * item.DIP * item.DPR;
-        sizeStr = `${imgWidth}x${Math.floor(imgWidth * config.scale)}`;
+        sizeStr = `${Math.floor(imgWidth)}x${Math.floor(imgWidth * config.scale)}`;
       } else if (
         typeof config.width == "string" &&
         config.width.split("").pop() == "%"
@@ -111,7 +111,7 @@ export const getImageSrcAndSrcsetCDNUrl = (data: imageInfo): string => {
           0.01 *
           item.DIP *
           item.DPR;
-        sizeStr = `${imgWidth}x${Math.floor(imgWidth * config.scale)}`;
+        sizeStr = `${Math.floor(imgWidth)}x${Math.floor(imgWidth * config.scale)}`;
       }
       if (index < level.length - 1) {
         srcsetStr += `${cdnUrl(config.url, sizeStr)} ${imgWidth}w, `;
